@@ -1,0 +1,114 @@
+Q1
+package reference;
+
+interface First
+{
+	void disp1();
+}
+class Second
+{
+	void fun1()
+	{
+		System.out.println("in fun1");
+	}
+}
+public class methodreference {
+
+	public static void main(String[] args)
+	{
+		Second second=new Second();
+		First first=second::fun1;
+		first.disp1();
+
+	}
+
+}
+
+Q2
+package reference;
+
+interface Third
+{
+	void show(int num);
+}
+class Sample
+{
+	void disp(int num)
+	{
+		System.out.println("disp "+num);
+	}
+}
+public class methodreference {
+
+	public static void main(String[] args)
+	{
+		Sample sample=new Sample();
+		Third third=sample::disp;
+		third.show(500);
+	}
+
+}
+
+
+Q3
+package reference;
+
+interface Fifth
+{
+	int add(int a,int b);
+}
+class Math
+{
+	int calc(int a,int b)
+	{
+		System.out.println("in calc");
+		return (a+b);
+	}
+}
+public class methodreference {
+
+	public static void main(String[] args)
+	{
+		Math math=new Math();
+		System.out.println("using lambda");
+		Fifth lambda=(a,b)->{return math.calc(10,20);};
+		System.out.println(lambda.add(10, 20));
+		
+		
+		System.out.println("using method reference");
+		Fifth fifth=math::calc;
+		System.out.println(fifth.add(10,20));
+	}
+
+}
+
+Q4
+package reference;
+
+interface Sixth
+{
+	void disp5();
+}
+class Sample
+{
+    Sample()
+    {
+    	System.out.println("constructor");
+    }
+	static void fun1()
+	{
+		System.out.println("fun1 static method of sample");
+	}
+}
+public class methodreference {
+
+	public static void main(String[] args)
+	{
+		Sixth sixth=Sample::fun1;
+		sixth.disp5();
+		
+		Sixth sixth1=Sample::new;
+		sixth1.disp5();
+	}
+
+}

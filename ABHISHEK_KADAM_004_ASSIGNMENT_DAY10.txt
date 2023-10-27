@@ -1,0 +1,196 @@
+Q1
+package Thread;
+
+class UserDefineThread extends Thread
+{
+	
+	public void run()
+	{
+		System.out.println(Thread.currentThread().getName());
+		for(int i=65;i<91;i++)
+		{
+		   System.out.println((char)i);
+		}
+	}
+}
+public class thread
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Thread.currentThread());
+		
+		UserDefineThread thread1=new UserDefineThread();
+		UserDefineThread thread2=new UserDefineThread();
+		
+		thread1.setName("First");
+		thread2.setName("Second");
+
+		thread1.start();
+		thread2.start();
+	}
+
+}
+
+
+Q2
+package Thread;
+
+class UserDefineThread implements Runnable
+{
+	
+	public void run()
+	{
+		System.out.println(Thread.currentThread().getName());
+		for(int i=65;i<91;i++)
+		{
+		   System.out.println((char)i);
+		}
+	}
+}
+public class thread
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Thread.currentThread());
+		
+		UserDefineThread thread1=new UserDefineThread();
+		
+		Thread t1=new Thread(thread1);
+		Thread t2=new Thread(thread1);
+		t1.setName("First");
+		t2.setName("Second");
+		t1.start();
+		t2.start();
+	}
+
+}
+
+Q3
+package Thread;
+
+class UserDefineThread implements Runnable
+{
+	
+	synchronized public void run()
+	{
+		System.out.println(Thread.currentThread().getName());
+		for(int i=0;i<=5;i++)
+		{
+		   System.out.println("Exec "+i);  
+		}
+	}
+}
+public class thread
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Thread.currentThread());
+		
+		UserDefineThread thread1=new UserDefineThread();
+		Thread t1 =new Thread(thread1);
+		Thread t2 =new Thread(thread1);
+		
+		
+		t1.setName("First");
+		t2.setName("Second");
+		
+		t1.start();
+		t2.start();
+	}
+
+}
+
+Q4
+package Thread;
+
+class UserDefineThread implements Runnable
+{
+	public void run()
+	{
+	
+	    synchronized(UserDefineThread.class) //synchronized block
+	    {
+		   System.out.println(Thread.currentThread().getName());
+		    for(int i=0;i<=10;i++)
+	     	{
+		        System.out.println(i);  
+		     }
+	     }
+	}
+	
+}
+public class thread
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Thread.currentThread());
+		
+		UserDefineThread thread1=new UserDefineThread();
+		
+		Thread t1 =new Thread(thread1);
+		Thread t2 =new Thread(thread1);
+		
+		
+		t1.setName("First");
+		t2.setName("Second");
+		
+		t1.start();
+		t2.start();
+	}
+
+}
+
+
+
+////////////////////////
+
+package Thread;
+
+class UserDefineThread implements Runnable
+{
+
+	    synchronized static void disp()
+	    {
+		   System.out.println(Thread.currentThread().getName());
+		    for(int i=1;i<=50;i++)
+	     	{
+		        System.out.println(i);  
+		    }
+	     }
+	    
+	public void run()
+	{
+		disp();
+	}
+	
+}
+public class thread
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Thread.currentThread());
+		
+		UserDefineThread thread1=new UserDefineThread();
+		
+		Thread t1 =new Thread(thread1);
+		Thread t2 =new Thread(thread1);
+		
+		
+		t1.setName("First");
+		t2.setName("Second");
+		
+		t1.start();
+		t2.start();
+	}
+
+}
+
+
+
+
+
+
+
+
+
+

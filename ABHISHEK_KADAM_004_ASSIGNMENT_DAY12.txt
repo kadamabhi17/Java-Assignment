@@ -1,0 +1,256 @@
+Q1:
+
+package demo;
+import java.io.*;
+import java.util.*;
+
+public class First
+{
+	public static void main(String args[])
+	{
+		Scanner sc = new Scanner(System.in);
+		char[] arr1= null;
+		try(FileWriter fr= new FileWriter("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\XYZ.txt"))
+		{
+			char arr[]= new char[200];
+			for(int i=0;i<11;i++)
+			{ 
+				System.out.println("Enter data at "+ i +"position =  ");
+				arr[i]=sc.next().charAt(0);
+				fr.write(arr[i]);
+			}
+		}
+		catch(Exception ee)
+		{
+			ee.printStackTrace();
+		}
+		try(FileReader rf= new FileReader("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\XYZ.txt"))
+		{
+			File f= new File("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\XYZ.txt");
+			arr1= new char[(int)(f.length())];
+			rf.read(arr1);
+			String ss= new String(arr1);
+			System.out.println(ss);
+			
+		}
+		catch (Exception ee)
+		{
+			ee.printStackTrace();
+		}
+		for(int i=0;i<arr1.length;i++)
+		{
+			System.out.println(arr1[i]);
+		}
+	
+
+	}
+	
+
+}
+
+
+
+Q2:
+package demo;
+import java.io.*;
+import java.util.*;
+
+public class First
+{
+	public static void main(String args[])
+	{
+		try (RandomAccessFile rf= new RandomAccessFile("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\Text1.java", "rw"))
+		{
+			//write block
+			//rf.seek(rf.length());
+			System.out.println("Enter the data");
+			byte b[]= new byte[200];
+			int k= System.in.read(b);
+			rf.write(b,0,k);
+			
+			//read Block
+			rf.seek(0);
+			byte b1[]= new byte[(int)(rf.length())];
+			rf.read(b1);
+			String ss= new String(b1);
+			System.out.println("Output is \n");
+			System.out.println(ss);
+			
+			rf.seek(rf.length());
+			System.out.println("Enter data again:");
+			byte b2[]=new byte[200];
+			int k1= System.in.read(b2);
+			rf.write(b2,0,k);
+			
+			//read block again
+			rf.seek(0);
+			System.out.println("Final output is:");
+			byte b3[]= new byte[(int)rf.length()];
+			rf.read(b3);
+			String ss1= new String (b3);
+			System.out.println(ss1);
+			
+			
+		}
+		catch(Exception ee)
+		{
+			ee.printStackTrace();
+		}
+
+	
+
+	}
+	
+
+}
+
+
+Q3:
+
+package demo;
+import java.io.*;
+import java.util.*;
+
+public class First
+{
+	public static void main(String args[])
+	{
+		File f1=new File("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\Text1.java");
+		File f2= new File("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\New.java");
+		byte b1[]=new byte[(int)f1.length()];
+		try(FileInputStream fis= new FileInputStream("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\Text1.java"))
+		{
+			
+			
+			fis.read(b1);
+			//String ss=new String(b1);
+			//System.out.println(ss);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		try (FileOutputStream fos= new FileOutputStream("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\New.java"))
+		{
+			
+			
+			//int k= System.in.read(b2);
+			fos.write(b1);
+		}
+		catch (Exception ee)
+		{
+			ee.printStackTrace();
+		}
+				
+
+	}
+	
+
+}
+
+Q4:
+package demo;
+import java.io.*;
+import java.util.*;
+
+public class First
+{
+	public static void main(String args[])
+	{
+		Scanner sc= new Scanner(System.in); 
+		File f1=new File("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\Unicode1.txt");
+		File f2= new File("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\Unicode2.txt");
+		//byte b1[]=new byte[(int)f1.length()];
+		char arr[]=new char [10];
+		char arr1[]= new char[(int)f2.length()];
+		
+		
+		//read block of file 2
+		try (FileReader fr = new FileReader("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\Unicode2.txt"))
+		{
+			fr.read(arr1);
+		}
+		catch (Exception ee)
+		{
+			ee.printStackTrace();
+		}
+		for( int i=0; i<arr1.length ;i++)
+		{
+			System.out.println(arr1[i]);
+		}
+		//write block of file 1
+		try(FileWriter fw= new FileWriter("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\Unicode1.txt"))
+		{
+			for( int i=0; i<arr1.length;i++)
+			{	
+				arr[i]=arr1[i];
+				fw.write(arr[i]);
+			}
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+				
+
+	}
+	
+
+}
+
+Q5:
+package demo;
+import java.io.*;
+import java.util.*;
+
+public class First
+{
+	public static void main(String args[])
+	{
+		Scanner sc= new Scanner(System.in);
+		try(FileOutputStream fos= new FileOutputStream("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\Text.java"))
+		{
+			try(DataOutputStream dos= new DataOutputStream(fos))
+			{
+				while (true)
+				{
+					int k= sc.nextInt();
+					if(k==0)
+					{
+						break;
+					}
+					dos.writeInt(k);
+					
+				}
+			
+			}
+			
+		}
+		catch (Exception ee)
+		{
+			ee.printStackTrace();
+		}
+		
+		
+		try(FileInputStream fis= new FileInputStream("C:\\Users\\Lenovo\\OneDrive\\Desktop\\VITA TECH course\\Java\\java prac\\Text.java"))
+		{
+			try(DataInputStream dis= new DataInputStream(fis))
+			{
+				while (dis.available()!=0)
+				{
+					System.out.println(dis.readInt());
+					
+				}
+			}
+		}
+		catch (Exception ee)
+		{
+			ee.printStackTrace();
+		}
+
+	}
+	
+
+}

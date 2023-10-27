@@ -1,0 +1,288 @@
+Q1
+import java.lang.*;
+
+class shape
+{
+private int w,h;
+
+public int getw()
+{
+  return w;
+}
+
+public void setw(int w)
+{
+	this.w=w;
+}
+
+public int geth()
+{
+return h;
+}
+
+public void seth(int h)
+{
+this.h=h;
+}
+}
+
+public class getset
+{
+public static void main(String arg [])
+{
+	shape s1 = new shape();
+	s1.setw(90);
+	s1.seth(10);
+	System.out.println(s1.getw());
+	System.out.println(s1.geth());
+}
+}
+
+
+
+Q2
+
+import java.lang.*;
+
+class emp
+{
+private static int cnt=10;
+
+public static int getcnt()
+{
+return cnt;
+}
+
+}
+
+public class s
+{
+public static void main(String arg[])
+{
+System.out.println(emp.getcnt());
+}
+
+}
+
+
+Q3
+
+import java.lang.*;
+
+class emp
+{
+private static int cnt=10;
+
+public static int getcnt()
+{
+return cnt;
+}
+
+}
+
+public class s
+{
+public static void main(String arg[])
+{
+System.out.println(emp.getcnt());
+}
+
+}
+
+
+Q4
+
+class Demoob
+{
+	private int num;
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+}
+public class pattern
+{	
+	public static void main(String[] args)
+	{
+	Demoob obj1 = new Demoob(); // creation of new object and giving reference to obj1
+	Demoob abc2; // creating a reference which is not referencing to anyone
+	abc2= obj1; // assigning obj1's object to abc's, now obj1's object have two reference
+	obj1 = new Demoob(); // creating new object and assigning to obj1 
+	
+	}
+	
+}
+
+Q5
+
+package coding_foundation;
+import java.util.*;
+
+class A
+{
+	private int num;
+	private static int num1;
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public static void setNum1(int num1) {
+		A.num1 = num1;
+	}
+	public static int getNum1()
+	{
+		return A.num1;
+	}
+}
+class B
+{
+	private int num;
+	public static int num1;
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+}
+class C
+{
+	private int num;
+	public static int num1;
+	
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+}
+
+public class pattern
+{
+	public static void main(String [] args)
+	{
+			A obj1=new A();
+			obj1.setNum(100);
+			System.out.println(obj1.getNum());
+			B obj2 = new B();
+			obj2.setNum(100);
+			System.out.println(obj2.getNum());
+			C obj3 = new C();
+			obj3.setNum(100);
+			System.out.println(obj3.getNum());
+			A.setNum1(100);
+			B.num1 = 100;
+			C.num1 =100;
+			System.out.println(A.getNum1());
+			System.out.println(B.num1);
+			System.out.println(C.num1);
+			
+			
+	}
+	
+	
+}
+
+Q6
+
+package coding_foundation;
+import java.util.*;
+
+class A
+{
+	private int num;
+	private static int num1;
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public static void setNum1(int num1) {
+		A.num1 = num1;
+	}
+	public static int getNum1()
+	{
+		return A.num1;
+	}
+	static
+	{
+		System.out.println("inside A");
+	}
+}
+class B
+{
+	private int num;
+	public static int num1;
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+	static
+	{
+		System.out.println("inside B");
+	}
+}
+class C
+{
+	private int num;
+	public static int num1;
+	
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+	static
+	{
+		System.out.println("inside C");
+	}
+}
+
+public class pattern
+{
+	public static void main(String [] args)
+	{
+			A obj1=new A();
+			obj1.setNum(100);
+			System.out.println(obj1.getNum());
+			B obj2 = new B();
+			obj2.setNum(100);
+			System.out.println(obj2.getNum());
+			C obj3 = new C();
+			obj3.setNum(100);
+			System.out.println(obj3.getNum());
+			A.setNum1(100);
+			B.num1 = 100;
+			C.num1 =100;
+			System.out.println(A.getNum1());
+			System.out.println(B.num1);
+			System.out.println(C.num1);
+			
+			
+	}
+	static
+	{
+		System.out.println("inside main");
+	}
+	
+}

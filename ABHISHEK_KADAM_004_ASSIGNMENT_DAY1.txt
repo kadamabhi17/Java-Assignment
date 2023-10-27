@@ -1,0 +1,274 @@
+Que  1
+
+
+    import java.util.*;
+     public class table 
+{
+
+	public static void main(String[] args) 
+{
+	Scanner sc=new Scanner(System.in);
+	int num,i;
+	System.out.println("enter the number=");
+	num=sc.nextInt();
+	System.out.println("multiplication table of"+ num +":");
+	for (i=1;i<=10;i++)
+	{
+		System.out.println(num+"*"+i+"="+(num*i));
+	}
+	
+
+}
+}
+
+
+
+Que 3
+
+
+
+public class OneToTen 
+{
+    public static void main(String[] args) 
+{
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(i);
+        }
+    }
+}
+
+
+
+
+Que 4
+
+
+
+public class Numbers 
+{
+    public static void main(String[] args) 
+{
+        for (int i = 3; i <= 30; i++) {
+            if (i != 24) {
+                System.out.println(i);
+            }
+        }
+    }
+}
+
+
+
+
+
+Que 7 using nested for loop display following :
+
+
+
+A  a
+A  b
+A  c
+
+B  a
+B  b
+B  c
+
+C  a
+C  b
+C  c
+
+package demo;
+import java.util.*;
+public class demo
+{
+	public static void main(String[]args) 
+{
+		char ch='A';
+
+		for(int i=0;i<=3;i++)
+		{
+			
+			char ch1='a';
+			for(int j=1;j<=3;j++)
+			{ 
+				
+				System.out.println(ch+"\t"+ch1);
+				ch1++;
+			}
+			ch++;
+			
+			System.out.println();
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+	}	
+	
+}
+
+
+
+Que 8 solve following patten programs:
+
+
+a)
+
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * 
+
+
+package demo;
+import java.util.*;
+public class demo
+{
+	public static void main(String[]args) 
+{
+		for(int i=0;i<7;i++)
+		{
+			for(int space=6;space>i;space--)
+			{
+				System.out.print(" ");
+			}
+			for(int j=i;j>1;j--)
+			{
+				System.out.print("* ");
+			}
+			System.out.println( );
+		}
+	
+			
+	}	
+	
+}
+
+
+
+
+b)
+
+     * * * * 
+      * * * 
+       * * 
+        * 
+
+
+package demo;
+import java.util.*;
+public class demo
+{
+	public static void main(String[]args) 
+{
+		for(int i=7;i>1;i--)
+		{
+			for(int space=6;space>i;space--)
+			{
+				System.out.print(" ");
+			}
+			for(int j=i;j>1;j--)
+			{
+				System.out.print("* ");
+			}
+			System.out.println( );
+		}
+	
+			
+	}	
+	
+}
+
+
+
+
+
+
+c)
+
+
+
+    * 
+   * * 
+  * * * 
+ * * * * 
+  * * * 
+   * * 
+    * 
+
+
+package demo;
+import java.util.*;
+public class demo
+{
+	public static void main(String[]args) 
+{
+		
+		for(int i=1;i<7;i++)
+		{
+			for(int space=7;space>i;space--)
+			{
+				System.out.print(" ");
+			}
+			for(int j=i;j>1;j--)
+			{
+				System.out.print("* ");
+			}
+			System.out.println( );
+		}
+		for(int i=7;i>1;i--)
+		{
+			for(int space=7;space>i;space--)
+			{
+				System.out.print(" ");
+			}
+			for(int j=1;j<i;j++)
+			{
+				System.out.print("* ");
+			}
+			System.out.println( );
+		}
+		
+	}	
+	
+}
+
+
+
+Que 5
+ 
+
+package assignment;
+import java.util.Scanner;
+public class PASSFAIL 
+{
+    public static void main(String[] args) 
+{
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the result (0-100): ");
+        int result = scanner.nextInt();
+
+        if (result < 0 || result > 100) {
+            System.out.println("Invalid result. Please enter a valid result between 0 and 100.");
+        } else if (result < 40) {
+            System.out.println("Fail");
+        } else if (result < 60) {
+            System.out.println("Pass");
+        } else if (result < 75) {
+            System.out.println("Second Class");
+        } else if (result < 90) {
+            System.out.println("First Class");
+        } else {
+            System.out.println("Distinction");
+        }
+
+        scanner.close();
+    }
+}
+

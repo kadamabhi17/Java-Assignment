@@ -1,0 +1,136 @@
+Q1
+package Thread;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+class UserDefineThread implements Runnable
+{
+
+	    synchronized static void disp()
+	    {
+		   System.out.println(Thread.currentThread().getName());
+		    for(int i=65;i<91;i++)
+	     	{
+		        System.out.println((char)i);  
+		    }
+	     }
+	    
+	public void run()
+	{
+		disp();
+	}
+	
+}
+public class thread
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Thread.currentThread());
+		ExecutorService exec=Executors.newFixedThreadPool(2);
+		for(int i=0;i<2;i++)
+		{
+			exec.execute(new UserDefineThread());
+		}
+		exec.shutdown();
+		
+	}
+
+}
+
+Q3
+package Thread;
+import java.util.concurrent.locks.ReentrantLock;
+
+class UserDefineThread implements Runnable
+{
+	ReentrantLock reet=new ReentrantLock();
+
+	    void disp()
+	    {
+	    	reet.lock();
+		    System.out.println(Thread.currentThread().getName());
+		    for(int i=65;i<91;i++)
+	     	    {
+		        System.out.println((char)i);  
+		    }
+	       reet.unlock();
+	     }
+	    
+	public void run()
+	{
+		disp();
+	}
+	
+}
+public class thread
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Thread.currentThread());
+		UserDefineThread ut1=new UserDefineThread();
+		Thread t1=new Thread(ut1);
+		Thread t2=new Thread(ut1);
+		t1.start();
+		t2.start();
+	
+	}
+
+}
+
+Q4
+package reference;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
+class Fourth implements Runnable
+{
+	ReentrantLock reet=new ReentrantLock();
+	Condition c= reet.newCondition();
+	
+	public void run()
+	{
+		reet.lock();
+		System.out.println(Thread.currentThread().getName());
+		for(int i=1;i<=10;i++)
+		{
+			System.out.println(i);
+			if(i==5)
+			{
+				try
+				{
+					c.await();
+				}
+				catch(InterruptedException ie)
+				{
+					ie.printStackTrace();
+				}
+				
+			}
+			
+			c.signal();
+		}
+		
+		reet.unlock();
+		System.out.println(Thread.currentThread().getName());
+	}
+	
+}
+
+public class Demo
+{
+	public static void main(String args[])
+	{
+		Fourth fourth=new Fourth();
+		ExecutorService exec=Executors.newFixedThreadPool(2);
+		exec.execute(fourth);
+		exec.execute(fourth);
+	}
+}
+
+
+
+

@@ -1,0 +1,490 @@
+Q1
+package trial;
+
+public class Myclass
+{
+	int num=10;
+	
+	public String toString()
+	{
+		return("["+num+"]");	
+	}
+}
+package trial;
+
+public class Everything 
+{
+   static void show(Object ...k)
+   {
+	   for(int i=0;i<k.length;i++)
+	   {
+		   System.out.println(k[i]);   
+	   }
+   }
+}
+package trial;
+
+public class Demo1 
+{
+
+	public static void main(String[] args) 
+	{
+		Myclass ref=new Myclass();
+		Everything.show(ref,10,"Hii");
+	}
+
+}
+
+Q2
+package trial;
+
+class Sample 
+{
+	char ch;
+	int num=10;
+
+	Sample(char c)
+	{
+		ch=c;
+	}
+	 public String toString()
+	 {
+		return("["+ch+"]"); 
+	 }
+	 public boolean equals(Sample ref)
+	 {
+		 System.out.println("equals");
+		 return(this.ch==ref.ch);
+	 }
+	 public int hashCode()
+	 {
+		 return num;
+	 }
+
+}
+
+public class Demo2
+{
+	public static void main(String args[])
+	{
+		Sample sample1=new Sample('H');
+		Sample sample2=new Sample('H');
+		System.out.println(sample1);
+		System.out.println(sample2);
+		
+		if(sample1.equals(sample2))
+		{
+			System.out.println("true");
+		}
+		else
+		{
+			System.out.println("false");
+		}
+		System.out.println(sample1.hashCode());
+		System.out.println(sample2.hashCode());
+	}
+}
+                 
+
+
+Q3
+package trial;
+
+class A
+{
+	int a=10;
+	void Afun()
+	{
+		System.out.println(a);
+	}
+}
+class B
+{
+	int b=20;
+	void Bfun()
+	{
+		System.out.println(b);
+	}
+}
+class C
+{
+	int c=30;
+	void Cfun()
+	{
+		System.out.println(c);
+	}
+}
+class D
+{
+	int d=40;
+	void Dfun()
+	{
+		System.out.println(d);
+	}
+}
+public class Demo1
+{
+	public static void main(String args[])
+	{
+		Object arr[]=new Object[4];
+		arr[0]=new A();
+		arr[1]=new B();
+		arr[2]=new C();
+		arr[3]=new D();
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i] instanceof C)
+			{
+				C ref=(C)arr[i];
+				ref.Cfun();	
+			}
+		}
+	}
+}
+
+Q4
+package trial;
+
+public abstract class Artist 
+{
+	public abstract void perform();
+
+}
+package trial;
+
+public class Actor extends Artist
+{
+	public void perform()
+	{
+		System.out.println("Acting");
+	}
+	void changeGateUp()
+	{
+		System.out.println("changeGateUp");
+	}
+
+}
+package trial;
+
+public class Singer extends Artist
+{
+	public void perform()
+	{
+		System.out.println("Singing");
+	}
+
+}
+package trial;
+
+public class Musician extends Artist
+{
+	public void perform()
+	{
+		System.out.println("Musician");
+	}
+
+}
+package trial;
+
+public class Demo {
+
+	public static void main(String[] args) 
+	{
+		Artist arr[]=new Artist[3];
+		arr[0]=new Actor();
+		arr[1]=new Singer();
+		arr[2]=new Musician();
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			arr[i].perform();
+			if(arr[i] instanceof Actor)
+			{
+				Actor actor=(Actor)arr[i];
+				actor.changeGateUp();
+			}
+		}
+
+	}
+
+}
+
+Q5
+/**
+ * 
+ */
+package RevDevloper5;
+
+/**
+ * @author SAKSHI
+ *
+ */
+
+
+public class VotingNotAllowedException extends Exception
+{
+	/**
+	 * @param str is String
+	 */
+	public VotingNotAllowedException(String str)
+	{
+		super(str);
+	}
+
+}
+/**
+ * 
+ */
+package RevDevloper5;
+
+/**
+ * @author SAKSHI
+ *
+ */
+public class Person 
+{
+	private String name;
+	private int age;
+
+	/**
+	 * @param s is String
+	 * @param n is int
+	 * @throws VotingNotAllowedException is checked Exception
+	 */
+	public Person(String s,int n)throws VotingNotAllowedException
+	{
+		name=s;
+		age=n;
+		if(age<18)
+		{
+			throw new VotingNotAllowedException("age is less than 18");
+		}
+		
+	}
+	public String toString()
+	{
+		return("["+name+"]"+"["+age+"]");
+	}
+}
+import RevDevloper5.Person;
+import RevDevloper5.VotingNotAllowedException;
+
+public class Demo {
+
+	public static void main(String[] args) throws VotingNotAllowedException 
+	{
+		Person person=new Person("abc",23);
+		System.out.println(person);
+		
+	}
+
+}
+Q6
+package trial;
+
+public class Sample
+{
+	private int k;
+	
+	void Disp1()
+	{
+	  System.out.println("disp1");	
+	}
+	public int getK() {
+		return k;
+	}
+	public void setK(int k) {
+		this.k = k;
+	}
+	
+}
+package trial;
+
+import java.lang.reflect.Method;
+
+
+public class Demo 
+{
+public static void main(String[] args) 
+{
+	
+	Class c =null;
+	try 
+	{
+	c= Class.forName(args[0]);
+	}
+	catch(ClassNotFoundException ee)
+	{
+		ee.printStackTrace();
+	}
+	Method M[]=c.getDeclaredMethods();
+	for(int i=0;i<M.length;i++)
+	{
+		System.out.println(M[i]);
+	}
+}
+}
+
+
+Q7
+/**
+ * 
+ */
+package RevDeveloper7;
+
+/**
+ * @author SAKSHI
+ *
+ */
+public class First 
+{  
+	String str="First";
+	/**
+	 * @return String 
+	 */
+	public String tostring()
+	{
+		return("["+str+"]");
+	}
+
+}
+
+/**
+ * 
+ */
+package RevDeveloper7;
+
+/**
+ * @author SAKSHI
+ *
+ */
+
+public class Second 
+{  
+	String str="Second";
+	/**
+	 * @return String
+	 */
+	public String tostring()
+	{
+		return("["+str+"]");
+	}
+
+}
+
+
+/**
+ * 
+ */
+package RevDeveloper7;
+
+/**
+ * @author SAKSHI
+ *
+ */
+public class Third
+{  
+	String str="Third";
+	/**
+	 * @return String
+	 */
+	public String tostring()
+	{
+		return("["+str+"]");
+	}
+
+}
+
+
+/**
+ * 
+ */
+package RevDeveloper7;
+
+/**
+ * @author SAKSHI
+ *
+ */
+
+public class Four 
+{  
+	String str="Four";
+	/**
+	 * @return String
+	 */
+	public String tostring()
+	{
+		return("["+str+"]");
+	}
+
+}
+
+import java.util.Scanner;
+
+import RevDeveloper7.First;
+import RevDeveloper7.Second;
+import RevDeveloper7.Third;
+import RevDeveloper7.Four;
+public class Demo 
+{
+	static Object returnObject(String name)
+	{
+		Object ob=null;
+		try 
+		{
+			Class c=Class.forName(name);
+			ob=c.newInstance();
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		return ob;
+		
+	}
+
+	public static void main(String args[])
+	{
+		try
+		{
+			Scanner sc=new Scanner(System.in);
+		
+		String str=sc.next();
+		Object ob1=returnObject(str);
+		
+		if(ob1 instanceof First)
+		{
+			System.out.println((First)ob1);
+			//System.out.println(ob1);
+		}
+		else if(ob1 instanceof Second)
+		{
+			Second second=(Second)ob1;
+			System.out.println(second);
+			//System.out.println(ob1);
+		}
+		else if(ob1 instanceof Third)
+		{
+			Third third=(Third)ob1;
+			System.out.println(third);
+			//System.out.println(ob1);
+		}
+		else if(ob1 instanceof Four)
+		{
+			Four four=(Four)ob1;
+			System.out.println(four);
+			//System.out.println(ob1);
+		}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+         
+         
+	}
+
+}
+
+

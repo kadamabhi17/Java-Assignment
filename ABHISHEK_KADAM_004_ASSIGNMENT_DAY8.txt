@@ -1,0 +1,291 @@
+
+QUE 1
+
+
+package pack1;
+
+public class MyArithException extends Exception
+{
+	public MyArithException(String mess)
+	{
+		super(mess);
+	}
+}
+package pack1;
+
+public class Calculator 
+{
+	int calculateDouble(int num) throws MyArithException
+	{
+		if(num <0) // for negative 
+		{ 
+			throw new MyArithException("Negative value not allowed");
+		}
+		else if(num == 0) // for zero 
+		{
+			throw new MyArithException("Zero value not allowed");
+		}
+			return num*2;
+	
+	}
+}
+package pack1;
+import java.util.Scanner;
+public class MyCalcApp 
+{
+	
+	 public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        System.out.print("Enter a number: ");
+	        int number = scanner.nextInt();
+	        Calculator c=new Calculator();
+			int result=0;
+	        try {
+	        	result=c.calculateDouble(number);
+	        	System.out.println(result);
+			} catch (MyArithException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e);
+			}
+	        scanner.close();
+	    }
+	
+}
+
+
+QUE 2
+
+
+package devpack;
+
+/**
+ * @author corndiddy
+ *below class is an exception class that raises an exception when a value is divisible by 7
+ */
+public class NumberNotDivisibleBySevenException extends Exception
+{
+	public NumberNotDivisibleBySevenException(String mess)
+	{
+		super(mess);
+	}
+}
+import devpack.NumberNotDivisibleBySevenException;
+public class MyMath 
+{
+
+	public void disp(int num) throws NumberNotDivisibleBySevenException
+	{
+		if(num % 7 != 0)
+)
+		{
+			throw new NumberNotDivisibleBySevenException("number is not divisible by 7 error");
+		}
+		else
+		{
+			System.out.println("num = "+ num);
+		}
+			
+	}
+
+}
+import devpack.NumberNotDivisibleBySevenException;
+public class Demo {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		MyMath mm = new MyMath();
+		int num = 0;
+		try 
+		{
+			mm.disp(10);
+		}
+		catch(NumberNotDivisibleBySevenException ne)
+		{
+			System.out.println(ne);
+		}
+
+	}
+
+}
+
+
+QUE 3
+
+
+package pack1;
+
+public class MyException extends Exception
+{
+	public MyException(String st)
+	{
+		super(st);
+	}
+}
+package pack1;
+
+import java.util.Scanner;
+
+public class Demo 
+{
+	//public void show1(), public void show2() , public void show3() and main functions.
+	
+	public void show1()
+	{
+		System.out.println("inside show1()");
+		try {
+			show2();
+		} catch (MyException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+		}
+	}
+	public void show2() throws MyException
+	{
+		System.out.println("inside show2()");
+		show3();
+	}
+	public void show3() throws MyException
+	{
+		System.out.println("inside show3()");
+		//inside "show3()" accept a number and if it is greater than 10 raise "MyException" else display the number.
+		System.out.print("Enter a number : ");
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		if(num > 10)
+		{
+			throw new MyException("NUMBER IS GREATER THAN 10");
+		}
+		else
+		{
+			System.out.println(num);
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Demo d =new Demo();
+		d.show1();
+		
+	}
+
+}
+
+
+QUE 4
+
+
+package devpack;
+
+/**
+ * @author corndiddy
+ * this is an invalid length exception class that extends Exception class  
+ */
+public class InvalidLengthException extends Exception
+{
+	public InvalidLengthException(String st)
+	{
+		super(st);
+	}
+}
+import devpack.InvalidLengthException;
+
+public class Authenticator 
+{
+	private String pass;
+	Authenticator(String pass) throws InvalidLengthException
+	{
+		if(pass.length() < 5 || pass.length() > 9)
+		{
+			throw new InvalidLengthException("Password length must be between 5 and 9 characters.");
+		}
+		else
+		{
+			this.pass = pass;
+		}
+	}
+	public void done()
+	{
+		System.out.println("Authentication successfull");
+	}
+}
+import devpack.InvalidLengthException;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		try {
+			Authenticator auth = new Authenticator("Iamvibhor");
+			auth.done();
+		} catch (InvalidLengthException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+		}
+		
+	}
+}
+
+
+QUE 5
+
+
+package devpack;
+
+/**
+ * @author corndiddy
+ * this is an exception class that checks if resourcs is allocated or not if not allocated then it aises exception 
+ */
+public class ResourceNotAllocatedException extends Exception
+{
+	ResourceNotAllocatedException(String rnae)
+	{
+		super(rnae);
+	}
+}
+package devpack;
+
+/**
+ * @author corndiddy
+ *	this class implements autoclosable and then allocates resources as required
+ */
+public class MyResource implements AutoCloseable
+{
+	public MyResource(int capacity) throws ResourceNotAllocatedException
+	{
+		if(capacity>100)
+		{
+			throw new ResourceNotAllocatedException("not sufficient space");
+		}
+	}
+    public void disp()
+    {
+    	System.out.println("successful");
+    }
+	@Override
+	public void close()  {
+		System.out.println("resource is closed");
+		
+	}
+}
+package clientside1;
+
+import devpack.MyResource;
+import devpack.ResourceNotAllocatedException;
+
+public class demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try 
+		{
+			MyResource mr = new MyResource(90);
+			mr.disp();
+		} catch (ResourceNotAllocatedException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+		}
+	}
+
+}
